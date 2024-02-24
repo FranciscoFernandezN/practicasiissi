@@ -1,4 +1,4 @@
-import { Model } from 'sequelize'
+import { Model, Sequelize } from 'sequelize'
 import moment from 'moment'
 
 const loadModel = (sequelize, DataTypes) => {
@@ -27,8 +27,30 @@ const loadModel = (sequelize, DataTypes) => {
     }
   }
   Restaurant.init({
-    // TODO: Include the rest of the properties of the Restaurant model
-
+    name: DataTypes.STRING,
+    description: DataTypes.STRING,
+    address: DataTypes.STRING,
+    postalCode: DataTypes.STRING,
+    url: DataTypes.STRING,
+    shippingCosts: DataTypes.DOUBLE,
+    averageServiceMinutes: DataTypes.DOUBLE,
+    email: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    logo: DataTypes.STRING,
+    heroImage: DataTypes.STRING,
+    status: {
+      type: DataTypes.ENUM,
+      values: [
+        'online',
+        'offline',
+        'closed',
+        'temporarily closed'
+      ]
+    },
+    userId: DataTypes.INTEGER,
+    restaurantCategoryId: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Restaurant'
